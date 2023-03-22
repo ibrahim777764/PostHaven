@@ -1,2 +1,0 @@
-# PostHaven
-blogging app
