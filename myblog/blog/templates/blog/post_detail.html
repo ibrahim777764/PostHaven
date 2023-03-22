@@ -7,5 +7,10 @@
     <div class="date">
       Published: {{ post.created_at }}
     </div>
+    {% if user.is_authenticated and user == post.author %}
+    <div class="edit">
+      <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+    </div>
+    {% endif %}
   </div>
 {% endblock %}

@@ -1,13 +1,21 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-  {% for post in posts %}
+  <div class="posts">
+    {% for post in posts %}
     <div class="post">
       <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-      <p>{{ post.text|linebreaks }}</p>
+      <p>{{ post.content|linebreaks }}</p>
       <div class="date">
-        Published: {{ post.published_date }}
+        Published: {{ post.created_at }}
       </div>
     </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
+  {% if user.is_authenticated %}
+  <div class="new-post">
+    <a class="btn btn-primary" href="{% url 'post_new' %}">New Post</a>
+  </div>
+  {% endif %}
 {% endblock %}
+
