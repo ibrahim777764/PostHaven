@@ -1,10 +1,12 @@
 {% extends 'blog/base.html' %}
 
-{%block content %}
-<h1>New Post</h1>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-primary">Save</button>
-</form>
+{% block content %}
+    <div class="post">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p class="date">{{ post.published_date }}</p>
+        <p>{{ post.text|linebreaks }}</p>
+    </div>
 {% endblock %}
