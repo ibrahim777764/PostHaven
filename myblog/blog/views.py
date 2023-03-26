@@ -8,10 +8,12 @@ from django.urls import reverse
 
 
 
-
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    recent_posts = Post.objects.order_by('-created_at')[:5]  # use the 'created_at' field instead of 'published_date'
+    return render(request, 'blog/post_list.html', {'posts': posts, 'recent_posts': recent_posts})
+
+
 
 
 def post_detail(request, pk):
@@ -66,7 +68,8 @@ def post_update(request, pk):
 
 
 def my_view(request):
-    post = Post.objects.get(pk=16)
+    post = Post.objects.get(id=16)
     url = reverse('post_update', kwargs={'pk': post.pk})
     # ...
+
 
