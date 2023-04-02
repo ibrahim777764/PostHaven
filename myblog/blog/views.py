@@ -8,6 +8,10 @@ from django.urls import reverse
 
 
 
+def post_list(request):
+    posts = Post.objects.all()
+    recent_posts = Post.objects.order_by('-created_at')[:5]  # use the 'created_at' field instead of 'published_date'
+    return render(request, 'blog/post_list.html', {'posts': posts, 'recent_posts': recent_posts})
 
 
 
