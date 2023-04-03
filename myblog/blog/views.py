@@ -55,14 +55,7 @@ def post_edit(request, pk):
   
 
 
-def post_update(request, pk):
-    print("PK value:", pk)  # Add this line to check the pk value
-    post = get_object_or_404(Post, pk=pk)
-    form = PostForm(request.POST or None, request.FILES or None, instance=post)
-    if form.is_valid():
-        form.save()
-        return redirect('post_detail', pk=post.pk)
-    return render(request, 'blog/post_edit.html', {'form': form, 'post': post})
+
 
 
 
