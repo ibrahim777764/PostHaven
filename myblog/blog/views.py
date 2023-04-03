@@ -16,10 +16,7 @@ def post_list(request):
 
 
 
-def post_detail(request, pk):
-    print(pk)  # Add this line to check the pk value
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post, 'pk': pk})
+
 
 
 
